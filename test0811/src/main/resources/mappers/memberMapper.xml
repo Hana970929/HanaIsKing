@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yg.mapper.MemberMapper">
+	<insert id="regist">
+		insert into member(id, name, pw) values(#{id},#{name},#{pw})
+	</insert>
+	<select id="login" resultType="String">
+		SELECT pw FROM member WHERE id=#{id}
+	</select>
+	<select id="getInfo" resultType="com.yg.dto.MemberDto">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	<select id="getAll" resultType="com.yg.dto.MemberDto">
+		SELECT * FROM member
+	</select>
+	<update id="pointUp">
+		UPDATE member SET point=point+1
+	</update>
+	<delete id="deleteMember">
+		DELETE FROM member WHERE id=#{id}
+	</delete>
+	<update id="watchAD">
+		UPDATE member SET point=point+1000 WHERE id=#{id}
+	</update>
+	<update id="purchase">
+		UPDATE member SET point=point-#{price} WHERE id=#{id}
+	</update>
+	<update id="updateMember">
+		UPDATE member SET point=#{point},pw=#{pw},name=#{name} WHERE id=#{id}
+	</update>
+</mapper>
